@@ -5,8 +5,10 @@ var likeArticle = React.createClass({
 });
 
 $(document).ready(function () {
-  React.render(
-    React.createElement(likeArticle, {}),
-    document.getElementById("articles")
-  );
+  $(".like-article").each(function(_index, article) {
+    React.render(
+      React.createElement(likeArticle),
+      article
+    )
+  })
 });
