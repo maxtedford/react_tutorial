@@ -1,6 +1,13 @@
 var likeArticle = React.createClass({
   render: function() {
-    return React.createElement("div", {}, "Like me!")
+    if(this.state.isLiked){
+      return React.createElement("div", {}, "Unlike me!");
+    } else {
+      return React.createElement("div", {}, "Like me!");
+    }
+  },
+  getInitialState: function() {
+    return {isLiked: false}
   }
 });
 
