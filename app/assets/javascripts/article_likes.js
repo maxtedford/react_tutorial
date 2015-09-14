@@ -1,13 +1,12 @@
-var Hello = React.createClass({
+var likeArticle = React.createClass({
   render: function() {
-    console.log(this.props);
-    return React.createElement("div", null, "Hello " + this.props.name + "!")
+    return React.createElement("div", {}, "Like me!")
   }
 });
 
 $(document).ready(function () {
   React.render(
-    React.createElement(Hello, {name: "Max"}),
+    React.createElement(likeArticle, {}),
     document.getElementById("articles")
-  )
+  );
 });
