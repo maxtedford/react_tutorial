@@ -8,7 +8,7 @@ var likeArticle = React.createClass({
     }
   },
   getInitialState: function() {
-    return {isLiked: false}
+    return { isLiked: this.props.initialIsLiked }
   },
   clickHandler: function() {
     this.setState({ isLiked: !this.state.isLiked })
@@ -17,8 +17,11 @@ var likeArticle = React.createClass({
 
 $(document).ready(function () {
   $(".like-article").each(function(_index, article) {
+    var props = {
+      initialIsLiked: $(article).data("initial-is-liked")
+    };
     React.render(
-      React.createElement(likeArticle),
+      React.createElement(likeArticle, props),
       article
     )
   })
