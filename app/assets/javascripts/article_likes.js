@@ -1,4 +1,4 @@
-var LikeArticle = React.createClass({
+var likeArticle = React.createClass({
   render: function() {
     if (this.state.isLiked) {
       return React.createElement("div", {onClick: this.handleClick}, "Un-Like Me!");
@@ -8,8 +8,9 @@ var LikeArticle = React.createClass({
   },
   handleClick: function() {
     var method = this.state.isLiked ? "DELETE" : "POST";
+    debugger;
     $.ajax({
-      url: '/articles/' + this.props.articleID + "/likes",
+      url: '/articles/' + this.props.articleId + "/likes",
       type: method,
       success: function(response) {
         this.setState({isLiked: response.liked});
@@ -24,7 +25,8 @@ var LikeArticle = React.createClass({
 $(document).ready(function () {
   $(".like-article").each(function(_index, article) {
     var props = {
-      initialIsLiked: $(article).data("initial-is-liked")
+      initialIsLiked: $(article).data("initial-is-liked"),
+      articleId: $(article).data("article-id")
     };
     React.render(
       React.createElement(likeArticle, props),
