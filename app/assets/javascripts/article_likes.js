@@ -1,17 +1,23 @@
-var likeArticle = React.createClass({
+var LikeArticle = React.createClass({
   render: function() {
-    console.log(this.state.isLiked);
-    if(this.state.isLiked){
-      return React.createElement("div", { onClick: this.clickHandler }, "Unlike me!");
+    if (this.state.isLiked) {
+      return React.createElement("div", {onClick: this.handleClick}, "Un-Like Me!");
     } else {
-      return React.createElement("div", { onClick: this.clickHandler }, "Like me!");
+      return React.createElement("div", {onClick: this.handleClick}, "Like Me!");
     }
   },
-  getInitialState: function() {
-    return { isLiked: this.props.initialIsLiked }
+  handleClick: function() {
+    var method = this.state.isLiked ? "DELETE" : "POST";
+    $.ajax({
+      url: '/articles/' + this.props.articleID + "/likes",
+      type: method,
+      success: function(response) {
+        this.setState({isLiked: response.liked});
+      }.bind(this)
+    });
   },
-  clickHandler: function() {
-    this.setState({ isLiked: !this.state.isLiked })
+  getInitialState: function() {
+    return {isLiked: this.props.initialIsLiked};
   }
 });
 
