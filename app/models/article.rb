@@ -8,6 +8,14 @@ class Article < ActiveRecord::Base
   has_many :tags, :through => :taggings
 
   #default_scope :include => [:comments, :tags]
+  
+  def to_json(options = {})
+    additional = {
+      tag_list: tag_list,
+      comments_count: comments.count
+    }
+    super(options).merge(additional)
+  end
 
   def to_s
     return title
