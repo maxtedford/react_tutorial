@@ -28,16 +28,3 @@ var LikeArticle = React.createClass({
     return {isLiked: this.props.initialIsLiked};
   }
 });
-
-$(document).ready(function () {
-  $(".like-article").each(function(_index, article) {
-    var props = {
-      initialIsLiked: $(article).data("initial-is-liked"),
-      articleId: $(article).data("article-id")
-    };
-    React.render(
-      <LikeArticle initialIsLiked={props.initialIsLiked} articleId={props.articleId}/>,
-      article
-    )
-  })
-});
